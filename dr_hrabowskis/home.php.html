@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="./home.php_files/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="./home.php_files/ourStyles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="http://umbccd.io:6100/home.php#">
+      UMBC Grades Server
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+  <main role="main" class="container">
+    <h1>Welcome, President Hrabowski</h1>
+    <p class="lead">Click the button below to change all students' grades to an A</p>
+    <button type="button" class="btn-lg btn-danger centered" onclick="changeGrades()">DANGER: All students will get As for the semester</button>
+    <img src="./home.php_files/trueGrit.jpg" class="centered" id="trueGrit" name="DawgCTF{WeLoveTrueGrit}" style="display:none;">
+  </main>
+
+  <script>
+    function changeGrades() {
+      document.getElementById('trueGrit').style.display='block';
+    }
+  </script>
+
+</body></html>

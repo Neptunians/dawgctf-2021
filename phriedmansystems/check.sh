@@ -1,0 +1,14 @@
+curl -vv 'https://phriedmansystems.onrender.com/secure/data/c32893d1f88eb61f70526646c10aa7b4232f31f37d197f60664d6a879bd6ca65' \
+  -H 'authority: phriedmansystems.onrender.com' \
+  -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="90", "Google Chrome";v="90"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36' \
+  -H 'accept: */*' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://phriedmansystems.onrender.com/login.html' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'if-none-match: "76b5ff537989423e137dac5abb7f2740"' \
+  -H 'if-modified-since: Wed, 28 Apr 2021 03:59:17 UTC' \
+  --compressed

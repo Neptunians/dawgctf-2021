@@ -1,0 +1,155 @@
+
+<!-- saved from url=(0014)about:internet -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Phriedman Systems | Employee Login</title>
+    <link rel="stylesheet" href="./login_files/main.css">
+    <script>
+        async function checkUser() {
+            console.log("Checking username validity...");
+            const username = document.getElementById("username").value;
+            const hashval = await sha256(username);
+            console.log("Username: " + username + "\nHashed: " + hashval);
+            fetch("https://phriedmansystems.onrender.com/secure/users/" + hashval)
+                .then(response => {
+                    if (response.status == 200) {
+                        console.log(`User "${username}" exists!`);
+                        document.getElementById("password").disabled = false;
+                        document.getElementById("password").placeholder = "Enter password...";
+                        document.getElementById("login").disabled = false;
+                        document.getElementById("userValid").innerText = `User "${username}" exists! Please enter password.`;
+                    } else {
+                        console.log(`User "${username}" does not exist.`);
+                        document.getElementById("userValid").innerText = `User "${username}" does not exist. Cannot continue.`;
+                    }
+                });
+        }
+
+        async function login() {
+            console.log("Attempting to get secure data...");
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const input = username + "-" + password;
+            const hashval = await sha256(input);
+            console.log("Input: " + input + "\nHashed: " + hashval);
+            fetch("https://phriedmansystems.onrender.com/secure/data/" + hashval)
+                .then(response => {
+                    if (response.status == 200) {
+                        alert(`Login with user "${username}" successful!`);
+                        return response.text();
+                    } else {
+                        console.warn("Login failed.");
+                    }
+                })
+                .then(data => {
+                    if (data == undefined) data = "<< LOGIN FAILED >>\nEnsure password is correct.";
+                    console.log("Data: " + data);
+                    document.getElementById("dataOutput").innerText = data;
+                    document.getElementById("userOutput").innerHTML = " of user <u>" + username + "</u>";
+                });
+        }
+
+        // from MDN
+        async function sha256(message) {
+            const msgUint8 = new TextEncoder().encode(message); // encode as (utf-8) Uint8Array
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8); // hash the message
+            const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+            return hashHex;
+        }
+
+        async function generateHashes() {
+
+            users = [
+                "admin",
+                "csmith",
+                "mruppsen",
+                'vfrudd',
+                'amartey',
+                'lvedley',
+                'sleaver',
+                'jriddley',
+                'rfiddson',
+                'peddlin',
+                'aheddsen',
+                'jladdlin'
+            ];
+
+            result = '';
+            for (i = 0; i < 10; i++) {
+
+                testuser = users[i];
+
+                encrypted = await sha256(testuser);
+                result += "'" + testuser + "': '" + encrypted + "',\n";
+
+            }
+
+            document.getElementById("userList").innerText = result;
+
+        }
+
+        function load() {
+            document.getElementById("checkUser").onclick = checkUser;
+            document.getElementById("login").onclick = login;
+
+            generateHashes();
+        }
+    </script>
+</head>
+
+<body onload="load()">
+    <div class="content header">
+        <img src="./login_files/logo.webp" alt="" height="100px" style="margin-left: -20px">
+    </div>
+    <div class="navcontainer">
+        <ul class="navbar">
+            <li class="navbar"><a href="https://phriedmansystems.onrender.com/">Home</a></li>
+            <li class="navbar"><a href="https://phriedmansystems.onrender.com/products.html">Products</a></li>
+            <li class="navbar"><a href="https://phriedmansystems.onrender.com/sales.html">Sales</a></li>
+            <li class="navbar"><a href="https://phriedmansystems.onrender.com/employees.html">Employees</a></li>
+            <li class="navbar"><a href="https://phriedmansystems.onrender.com/careers.html">Careers</a></li>
+            <li class="navbar"><a href="https://phriedmansystems.onrender.com/about.html">About Us</a></li>
+        </ul>
+    </div>
+    <div class="content" style="text-align: center;">
+        <h2>
+            EMPLOYEES ONLY!
+        </h2>
+        <i>
+            Unauthorized access to this system is against the CEO's Code of Ethics.
+            <br>
+            Note: Javascript and HTTPS required for access.
+        </i>
+        <h3 style="font-variant: small-caps;">
+            Phriedman Systems Secure Data Access Website
+        </h3>
+        <form style="border: 2px solid #222; border-radius: 20px;">
+            <p>
+                <label style="padding-right: 4px" for="username">Username:</label>
+                <input name="username" id="username">
+            </p>
+            <p>
+                <button type="button" id="checkUser">Check Username Validity</button>
+                </p><div id="userValid" style="font-size: small;">User "amartey" does not exist. Cannot continue.</div>
+            <p></p>
+            <p>
+                <label style="padding-right: 4px" for="password">Password:</label>
+                <input name="password" id="password" placeholder="Enter password...">
+            </p>
+            <p>
+                <button type="button" id="login">Log In</button>
+            </p>
+        </form>
+        <div style="border: 2px solid #222; border-radius: 20px; padding: 30px;">
+            Secure Data<span id="userOutput"> of user <u>vfrudd</u></span>:<br><br>
+            <i id="dataOutput" style="font-family: monospace;">&lt;&lt; LOGIN FAILED &gt;&gt;<br>Ensure password is correct.</i>
+        </div>
+        <div>
+            <span id="userList">
+                Empty
+            </span>
+        </div>
+    </div>
+
+
+</body></html>

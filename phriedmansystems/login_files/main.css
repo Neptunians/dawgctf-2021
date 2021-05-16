@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+body {
+    background-color: #312f3c;
+    font-family: 'Arimo', sans-serif;
+    color: #ddd;
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.header {
+    margin-top: 30px;
+    padding-left: -20px;
+}
+
+.navcontainer {
+    background-color: #4f4e5e;
+    overflow: auto;
+    margin: 30px 0;
+}
+
+ul.navbar {
+    list-style-type: none;
+    margin: auto;
+    max-width: 800px;
+    padding: 0;
+}
+
+li.navbar {
+    float: left;
+}
+
+.navbar>a {
+    display: block;
+    padding: 12px;
+    margin: 0px;
+    margin-left: -12px;
+    margin-right: 12px;
+    text-decoration: none;
+    color: #eee;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    background-color: #5a5970;
+}
+
+.navbar>a:hover {
+    background-color: #46437a;
+}
+
+.navbar>a.active {
+    background-color: #507e92;
+}
+
+.content>img {
+    margin: auto;
+    margin-top: 30px;
+    display: block;
+}
+
+.caption {
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.content li {
+    margin: 10px 0;
+}
+
+.bottomsep {
+    background-color: #4f4e5e;
+    overflow: auto;
+    margin: 30px 0;
+    height: 3px;
+}
+
+footer {
+    letter-spacing: 1px;
+    font-style: italic;
+    font-variant: small-caps;
+}
